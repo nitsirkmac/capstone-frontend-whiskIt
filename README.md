@@ -11,8 +11,21 @@ Recipes are passed down through families and around with friends throughout our 
 ## Screenshots
 
 ## Model
+Recipe = {
+    name: String,
+    author: String,
+    prepTime: String,
+    cookTime: String,
+    ingredients: String,
+    instructions: String,
+    image: String,
+}
 
 ## Technology
+MongoDb\
+Node.js\
+Express\
+ReactNative\
 
 ## Expo Go QR Code
 
