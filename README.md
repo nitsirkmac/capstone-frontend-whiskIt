@@ -8,6 +8,12 @@ Recipes are passed down through families and around with friends throughout our 
 ![Logo](assets/Logo.png)
 
 
+## Screenshots
+
+## Model
+
+## Technology
+
 ## Expo Go QR Code
 
 ![alt text](assets/QR-expo.png)

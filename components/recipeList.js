@@ -1,7 +1,11 @@
-import { Text } from 'react-native'
+import { Text, View } from 'react-native'
+// import { } from './appStyles'
 
-export default function RecipeList() {
+export default function RecipeList({ recipeList }) {
+
     return (
-        <Text> List of Recipes </Text>
-    )
+        <View>
+
+        </View>
+        )
 }
