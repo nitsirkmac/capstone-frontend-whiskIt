@@ -5,7 +5,7 @@ Recipes are passed down through families and around with friends throughout our 
 
 ## Logo
 
-![Logo](assets/Logo.png)
+![Logo](assets/Logo2.png)
 
 
 ## Screenshots

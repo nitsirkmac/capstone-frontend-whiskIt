@@ -7,7 +7,8 @@ import {
   TextInput,
   Button, 
   FlatList,
-  ActivityIndicator
+  ActivityIndicator,
+  SafeAreaView
 } from 'react-native';
 
 import RecipeList from './components/recipeList'
@@ -58,33 +59,40 @@ export default function App() {
   
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      
+      <Nav />
+
       {isLoading ? (
         <ActivityIndicator />
       ) : (
         <FlatList
           data={recipeList}
-          keyExtractor={({id}) => id}
           renderItem={({item}) => (
-            <Text>
-              {item.name}, {item.author}
-            </Text>
+            <View style={styles.recipeCard} >
+              <Text>{item.name} </Text>
+              <Text>{item.author}</Text>
+      
+            </View>
           )}
+          keyExtractor={(item, index) => {
+            return item.id
+          }}
           />
       )}
-      <Nav />
       
       <RecipeList />
 
       <Recipe />
 
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginTop: 40,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
@@ -92,5 +100,10 @@ const styles = StyleSheet.create({
   welcome: {
     color: '#e8400c',
     fontWeight: 'bold',
+  },
+  recipeCard: {
+    margin: 10,
+    borderWidth: 2,
+    borderColor: 'red',
   }
 });

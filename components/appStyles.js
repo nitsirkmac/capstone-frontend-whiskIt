@@ -12,3 +12,14 @@ export const images = {
     logo: '../assets/Logo.png',
 };
 
+export const Logo = styled.Image`
+    height: 50px;
+    width: 50px;
+`;
+
+export const NavBar = styled.View`
+    display: flex;
+    flex-direction: row;
+    align-items: space-between; 
+    justify-content: center;
+`;
