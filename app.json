@@ -1,10 +1,11 @@
 {
   "expo": {
-    "name": "capstone-frontend-whiskIt",
-    "slug": "capstone-frontend-whiskIt",
+    "name": "whiskIt!",
+    "slug": "whiskIt",
+    "description": "Recipes are passed down through families and around with friends throughout our lives, but are we storing and sharing them efficiently? Now we can. With WhiskIt!, we are  able to store, add, update and share dishes that we love with those we love most no matter the distance between us",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/Logo2.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
