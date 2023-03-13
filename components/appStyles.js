@@ -9,7 +9,7 @@ export const colors = {
 };
 
 export const images = {
-    logo: '../assets/Logo.png',
+    logo: '../assets/Logo2.png',
 };
 
 export const Logo = styled.Image`
@@ -22,4 +22,19 @@ export const NavBar = styled.View`
     flex-direction: row;
     align-items: space-between; 
     justify-content: center;
+`;
+
+export const InputInfo = styled.TextInput`
+    width: 300px;
+    margin: 10px;
+    border-width: 1px;
+    border-color: ${colors.beige};
+`;
+
+export const InputList = styled.TextInput`
+    width: 300px;
+    margin: 10px;
+    border-width: 1px;
+    border-color: ${colors.beige};
+    height: 200px;
 `;

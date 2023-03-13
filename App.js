@@ -14,15 +14,27 @@ import {
 import RecipeList from './components/recipeList'
 import Nav from './components/nav'
 import Recipe from './components/recipe'
+import AddRecipe from './components/addRecipe'
 
 
 
 
 export default function App() {
   
+  const [ modalIsVisible, setModalIsVisible ] = useState(false)
   const [ isLoading, setIsLoading ] = useState(true)
   const [ recipeList, setRecipeList ] = useState([])
   
+  function startAddRecipeHandler() {
+    setModalIsVisible(true)
+  }
+
+  function endAddRecipeHandler() {
+    setModalIsVisible(false)
+  }
+
+ 
+
   const URL = 'https://whiskit.herokuapp.com/recipes'
 
   const getRecipeList = async () => {
@@ -54,14 +66,22 @@ export default function App() {
   getRecipeList()
       }
     
-  function addRecipeHandler() {}
+
+  
+
+
     
   
 
   return (
     <SafeAreaView style={styles.container}>
       
-      <Nav />
+      <Nav 
+        visible={modalIsVisible}
+        onAddRecipe={addNewRecipe}
+        startAddRecipe={startAddRecipeHandler}
+        onCancel={endAddRecipeHandler}
+              />
 
       {isLoading ? (
         <ActivityIndicator />
@@ -76,7 +96,7 @@ export default function App() {
             </View>
           )}
           keyExtractor={(item, index) => {
-            return item.id
+            return item._id.toString()
           }}
           />
       )}
