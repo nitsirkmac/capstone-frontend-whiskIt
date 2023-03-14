@@ -1,28 +1,58 @@
-import { Text, Modal, View, Image, Button } from 'react-native'
-import { ShowImage } from './appStyles'
+import { useState } from 'react'
+import { Text, View, Image, TouchableOpacity, SafeAreaView, ScrollView, Modal } from 'react-native'
+import { TxtDelete, TxtUpdate, ShowModal, ShowBtns } from './appStyles'
 
 
-export default function Recipe({ thisRecipe, visible, exit }) {
+export default function Recipe({ visible, name, author, prepTime, cookTime, ingredients, instructions, image, handleRemove, handleUpdate, endShowModal}) {
+
+    const [ showModalIsVisible, setShowModalIsVisible ] = useState(false)
 
 
     return (
-        <Text> what is happening</Text>
+        
+        <Modal
+            visible={visible}
+            >
 
-        // <Modal visible={visible} animationType='slide' >
-        //     <View>
-        //         <Text> {thisRecipe.name} </Text>
-        //         {/* <Text> Created By: {thisRecipe.author} </Text>
-        //         <Text> Prep Time  |  Cook Time </Text>
-        //         <Text> {thisRecipe.prepTime} </Text>
-        //         <Text> {thisRecipe.cookTime} </Text>
-        //         {/* <Image source={{ uri: thisRecipe.image}} /> */}
-        //         {/* <Text> Ingredients Required: </Text>
-        //         <Text> {thisRecipe.ingredients} </Text>
-        //         <Text> Instructions: </Text>
-        //         <Text> {thisRecipe.instructions} </Text> */} 
+            <SafeAreaView>
+                <ShowModal>
+                    <Text> {name} </Text>
+                    <Text> {author} </Text>
+                    <Text> Prep Time: {prepTime} </Text>
+                    <Text> Cook Time: {cookTime} </Text>
+                    <Text> Ingredients: </Text>
+                    <Text> {ingredients} </Text>
+                    <Text> Step by Step: </Text>
+                    <Text> {instructions} </Text>
+                    <Image source={{ uri: image}} 
+                            style={{
+                            resizeMode: 'contain',
+                            margin: 2,
+                            height: 50,
+                            }} 
+                            />
 
-        //         {/* <Button title='Back To Directory' onPress={exit} /> */}
-        //     </View>
-        // </Modal>
+                </ShowModal>
+                
+                <ShowBtns>
+            
+                <TouchableOpacity onPress={() => handleRemove(_id)}>
+                    <TxtDelete >Delete</TxtDelete>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={() => handleUpdate(item)}>
+                    <TxtUpdate >Update</TxtUpdate>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={endShowModal}>
+                <Text>Back To Directory!</Text>
+                </TouchableOpacity>
+
+                </ShowBtns>
+
+
+            </SafeAreaView>
+        </Modal>
+
     )
-            }
+ }

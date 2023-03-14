@@ -16,7 +16,8 @@ import { useEffect, useState } from 'react'
 import Nav from './components/nav'
 import RecipeList from './components/recipeList'
 
-import { RecipeCard, CardText, CardImage } from './components/appStyles'
+import {  TxtDelete, TxtUpdate, ShowModal, ShowBtns } from './components/appStyles'
+import Recipe from './components/recipe';
 
 
 // Navigation
@@ -75,6 +76,7 @@ export default function App() {
   function endUpdateModal() {
     setUpdateModalIsVisible(false)
   }
+
 
 
   function endShowModal() {
@@ -404,43 +406,47 @@ export default function App() {
 
 
 
+
         <Modal
-        visible={showModalIsVisible}>
+            visible={showModalIsVisible}
+            >
+
             <SafeAreaView>
-              <ScrollView>
-                <Text> {name} </Text>
-                <Text> {author} </Text>
-                <Text> Prep Time: {prepTime} </Text>
-                <Text> Cook Time: {cookTime} </Text>
-                <Text> Ingredients: </Text>
-                <Text> {ingredients} </Text>
-                <Text> Step by Step: </Text>
-                <Text> {instructions} </Text>
-                <Image source={{ uri: image}} 
-                        style={{
-                          resizeMode: 'contain',
-                          margin: 2,
-                          height: 50,
-                        }} 
-                        />
+                <ShowModal>
+                    <Text> {name} </Text>
+                    <Text> {author} </Text>
+                    <Text> Prep Time: {prepTime} </Text>
+                    <Text> Cook Time: {cookTime} </Text>
+                    <Text> Ingredients: </Text>
+                    <Text> {ingredients} </Text>
+                    <Text> Step by Step: </Text>
+                    <Text> {instructions} </Text>
+                    <Image source={{ uri: image}} 
+                            style={{
+                            resizeMode: 'contain',
+                            margin: 2,
+                            height: 50,
+                            }} 
+                            />
 
-                <View>
-                  <TouchableOpacity onPress={() => handleRemove(_id)}>
-                    <Text style={styles.txtDelete} >Delete</Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity onPress={() => handleUpdate(itemData.item)}>
-                    <Text style={styles.txtUpdate} >Update</Text>
-                  </TouchableOpacity>
-
-               
-                </View>
-
-                <TouchableOpacity onPress={endShowModal}>
-                  <Text>Back To Directory!</Text>
+                </ShowModal>
+                
+                <ShowBtns>
+            
+                <TouchableOpacity onPress={() => handleRemove(_id)}>
+                    <TxtDelete >Delete</TxtDelete>
                 </TouchableOpacity>
 
-              </ScrollView>
+                <TouchableOpacity onPress={() => handleUpdate(itemData.item)}>
+                    <TxtUpdate >Update</TxtUpdate>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={endShowModal}>
+                <Text>Back To Directory!</Text>
+                </TouchableOpacity>
+
+                </ShowBtns>
+
 
             </SafeAreaView>
         </Modal>
@@ -478,11 +484,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  txtDelete: {
-  backgroundColor: '#e8400c',
-  color: '#4e1e2d',
-  width: 45,
-  },
   addNewModal: {
     flex: 1,
     alignItems: 'flex-start',
@@ -497,11 +498,7 @@ const styles = StyleSheet.create({
     width: 300,
     margin: 5,
   },
-  txtUpdate: {
-  backgroundColor: '#f28357',
-  color: '#4e1e2d',
-  width: 55,
-  },
+
   updatewModal: {
     flex: 1,
     alignItems: 'flex-start',

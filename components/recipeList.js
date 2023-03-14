@@ -5,6 +5,8 @@ import { RecipeCard, CardText, CardImage } from './appStyles'
 
 export default function RecipeList({ recipeList, handleShow }) {
 
+    
+
     return (
         <View>
             <FlatList 

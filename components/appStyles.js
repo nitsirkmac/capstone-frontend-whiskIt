@@ -71,3 +71,27 @@ export const CardImage = styled.View`
     justify-content: flex-end;
     margin: 4px;
 `;
+
+export const TxtDelete = styled.Text`
+    background-color: ${colors.red};
+    color: ${colors.brown};
+    width: 45px;
+`;
+
+export const TxtUpdate = styled.Text`
+    background-color: ${colors.taupe};
+    color: ${colors.brown};
+    width: 55px;
+`;
+
+export const ShowModal = styled.ScrollView`
+    background-color: ${colors.beige};
+
+`;
+
+export const ShowBtns = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
+`;
+
+
