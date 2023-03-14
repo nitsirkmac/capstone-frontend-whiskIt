@@ -7,6 +7,11 @@ Recipes are passed down through families and around with friends throughout our 
 
 ![Logo](assets/Logo2.png)
 
+## Expo Go QR Code
+
+![alt text](assets/QR-expo.png)
+
+
 ## Wireframe
 
 ![alt text](assets/WireFrame1.png)
@@ -32,9 +37,6 @@ Node.js\
 Express\
 ReactNative\
 
-## Expo Go QR Code
-
-![alt text](assets/QR-expo.png)
 
 
 ## Future Enhancements
