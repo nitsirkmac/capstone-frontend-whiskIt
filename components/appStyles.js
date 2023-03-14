@@ -28,6 +28,7 @@ export const NavBar = styled.View`
     flex-direction: row;
     align-items: space-between; 
     justify-content: center;
+    margin: 30px;
 `;
 
 export const NavAddBtn = styled.TouchableOpacity`
@@ -48,7 +49,6 @@ export const WhiskItText = styled.Text`
 `;
 
 export const RecipeCard = styled.View`
-    display: flex;
     flex-direction: row;
     margin: 10px;
     border-width: 2px;
@@ -107,7 +107,7 @@ export const ShowScrollView = styled.ScrollView`
 export const ShowBtns = styled.View`
     flex-direction: row;
     justify-content: space-around;
-    height: 60px;
+    height: 80px;
 `;
 
 export const AddNewModal = styled.SafeAreaView`
@@ -173,4 +173,11 @@ export const ShowSafeView = styled.SafeAreaView`
 export const TxtHome = styled.Text`
     color: ${colors.taupe};
     font-weight: bold;
+`;
+
+export const RecipeCardTitle = styled.Text`
+    font-weight: bold;
+    font-size: 14px;
+    color: ${colors.orange};
+    padding: 3px;
 `;

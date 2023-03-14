@@ -35,8 +35,9 @@ import { ShowAuthor,
   TxtHome, 
   ShowModal, 
   ShowBtns, 
+  RecipeCardTitle,
   AddNewModal } from './components/appStyles'
-import Recipe from './components/recipe';
+
 
 
 // Navigation
@@ -226,11 +227,6 @@ export default function App() {
 
   return (
 
-    <>
-   
-
-
-
 
     <SafeAreaView >
       <View>
@@ -335,6 +331,10 @@ export default function App() {
         
 
 
+        <TouchableWithoutFeedback onPress={() => {
+          Keyboard.dismiss()
+          console.log('dismissed keyboard')
+          }} > 
         <Modal
           visible={updateModalIsVisible}
         >
@@ -419,7 +419,7 @@ export default function App() {
 
         </Modal>
 
-
+        </TouchableWithoutFeedback>
 
 
         <Modal
@@ -436,8 +436,6 @@ export default function App() {
                     <ShowImage source={{ uri: image}} 
                             style={{
                             resizeMode: 'contain',
-                            // margin: 2,
-                            // height: 50,
                             }} 
                             />
                     <ShowItemName> Ingredients: </ShowItemName>
@@ -445,22 +443,23 @@ export default function App() {
                     <ShowItemName> Step by Step: </ShowItemName>
                     <Text> {instructions} </Text>
 
+                            
                   </ShowScrollView>
                 </ShowModal>
                 
                 <ShowBtns>
             
-                <TouchableOpacity onPress={() => handleRemove(_id)}>
-                    <TxtDelete >Delete</TxtDelete>
-                </TouchableOpacity>
+                    <TouchableOpacity onPress={() => handleRemove(_id)}>
+                        <TxtDelete >Delete</TxtDelete>
+                    </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => handleUpdate(item)} >
-                    <TxtUpdate >Update</TxtUpdate>
-                </TouchableOpacity>
+                    <TouchableOpacity onPress={() => handleUpdate(itemData.item)} >
+                        <TxtUpdate >Update</TxtUpdate>
+                    </TouchableOpacity>
 
-                <TouchableOpacity onPress={endShowModal}>
-                <TxtHome>Back To Directory!</TxtHome>
-                </TouchableOpacity>
+                    <TouchableOpacity onPress={endShowModal}>
+                      <TxtHome>Back To Directory!</TxtHome>
+                    </TouchableOpacity>
 
                 </ShowBtns>
 
@@ -481,6 +480,8 @@ export default function App() {
         {isLoading ? (
           <ActivityIndicator />
         ) : (
+
+       
           <FlatList 
           data={recipeList}
           renderItem={(itemData) => {
@@ -489,7 +490,7 @@ export default function App() {
                 <RecipeCard >
                   <TouchableOpacity onPress={() => handleShow(itemData.item)}>
                     <CardText> 
-                      <Text> {itemData.item.name} </Text>
+                      <RecipeCardTitle> {itemData.item.name} </RecipeCardTitle>
                       <Text> {itemData.item.author} </Text>
                       <Text> Prep: {itemData.item.prepTime} </Text>
                       <Text> Cook Time: {itemData.item.cookTime} </Text>
@@ -522,7 +523,7 @@ export default function App() {
 
     </SafeAreaView>
 
-    </>
+
   );
 }
 
