@@ -1,27 +1,15 @@
-import { Text, View, Image, Button } from 'react-native'
-import AddRecipe from './addRecipe'
-import { Logo, NavBar } from './appStyles'
+import { Logo, NavBar, NavAddBtn, NavText, WhiskItText } from './appStyles'
+import { TouchableOpacity, Text, } from 'react-native'
 
-export default function Nav({ onAddRecipe, visible, startAddRecipe, onCancel }) {
+export default function Nav({ startModal }) {
+
     return (
-        <NavBar> 
-            <Text> Full Directory </Text>
-            <Logo source={require("../assets/Logo2.png")} />
-            <View>
-                <Button
-                    title='Add New Recipe'
-                    onPress={startAddRecipe}
-                />
-            </View>
-            <AddRecipe 
-                visible={visible}
-                onAddRecipe={onAddRecipe}
-                onCancel={onCancel}
-                    />
-            {/* <Text> Recipe Gallery</Text>
-            <Text> Add Recipe </Text>
-            <Text> Search Recipes </Text> */}
+        <NavBar>
+            <WhiskItText> WhiskIt! </WhiskItText>
+            <Logo source={require('../assets/Logo2.png')} />
+            <NavAddBtn onPress={startModal}>
+                <NavText> Add New Recipe </NavText>
+            </NavAddBtn>
         </NavBar>
-        
     )
 }

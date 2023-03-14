@@ -12,7 +12,13 @@ export const images = {
     logo: '../assets/Logo2.png',
 };
 
+// export const fonts = {
+//     dancing: 'https://fonts.googleapis.com/css2?family=Barlow&family=Dancing+Script:wght@500&family=Josefin+Slab:wght@300&display=swap';
+
+// }
+
 export const Logo = styled.Image`
+    align-self: center;
     height: 50px;
     width: 50px;
 `;
@@ -24,17 +30,44 @@ export const NavBar = styled.View`
     justify-content: center;
 `;
 
-export const InputInfo = styled.TextInput`
-    width: 300px;
-    margin: 10px;
-    border-width: 1px;
-    border-color: ${colors.beige};
+export const NavAddBtn = styled.TouchableOpacity`
+    border-bottom-width: 2px;
+    border-bottom-color: ${colors.red};
 `;
 
-export const InputList = styled.TextInput`
-    width: 300px;
+export const NavText = styled.Text`
+    color: ${colors.red};
+    font-size: 16px;
+`;
+
+export const WhiskItText = styled.Text`
+    color: ${colors.brown};
+    font-size: 16px;
+    font-weight: bold;
+
+`;
+
+export const RecipeCard = styled.View`
+    display: flex;
+    flex-direction: row;
     margin: 10px;
-    border-width: 1px;
-    border-color: ${colors.beige};
+    border-width: 2px;
+    border-color: ${colors.taupe};
+    border-radius: 5px;
     height: 200px;
+    background-color: ${colors.beige};
+    width: 350px;
+`;
+
+export const CardText = styled.View`
+    align-items: flex-start;
+    justify-content: space-between;
+    color: ${colors.brown};
+    padding-left: 4px;
+`;
+
+export const CardImage = styled.View`
+    width: 80px;
+    justify-content: flex-end;
+    margin: 4px;
 `;

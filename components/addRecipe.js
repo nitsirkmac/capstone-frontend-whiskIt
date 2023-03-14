@@ -2,7 +2,7 @@ import { Text, TextInput, Button, View, Modal, Image, SafeAreaView } from 'react
 import { useState } from 'react'
 import { InputInfo, InputList } from './appStyles'
 
-export default function AddRecipe({ onAddRecipe, visible, onCancel }) {
+export default function AddRecipe({ createRecipe, visible, onCancel }) {
 
 
     const [ newRecipe, setNewRecipe ] = useState({
@@ -19,8 +19,9 @@ export default function AddRecipe({ onAddRecipe, visible, onCancel }) {
         setNewRecipe(enteredText)
       }
     
-      function addRecipeHandler() {
-        onAddRecipe(newRecipe => [
+      function addRecipeHandler(enteredText) {
+        createRecipe(enteredText => [
+            ...newRecipe,
           {[evt.target.name]: evt.target.value}
         ])
         onCancel()
@@ -33,8 +34,8 @@ export default function AddRecipe({ onAddRecipe, visible, onCancel }) {
             <SafeAreaView >
                 <InputInfo
                     placeholder='Recipe Name'
-                    value={newRecipe.name}
                     onChangeText={recipeInputHandler}
+                    value={name}
                 />
                 <InputInfo
                     placeholder='Author'
@@ -53,7 +54,7 @@ export default function AddRecipe({ onAddRecipe, visible, onCancel }) {
                     multiline
                     value={newRecipe.ingredients}
                 />
-                <TextInput 
+                <InputList 
                     placeholder='Step-by-Step Instructions'
                     multiline
                     value={newRecipe.instructions}
