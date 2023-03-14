@@ -36,7 +36,12 @@ import { ShowAuthor,
   ShowModal, 
   ShowBtns, 
   RecipeCardTitle,
-  AddNewModal } from './components/appStyles'
+  AddNewBtns,
+  AddNewClose,
+  AddNewAdd,
+  Logo,
+  AddNewModal, 
+  FormText} from './components/appStyles'
 
 
 
@@ -90,6 +95,7 @@ export default function App() {
   }
 
   function startUpdateModal() {
+    setShowModalIsVisible(false)
     setUpdateModalIsVisible(true)
   }
 
@@ -136,6 +142,7 @@ export default function App() {
       return res.json()
     }).then(res=>{
       getRecipeListData()
+      
     }).catch(err=>{
       console.log(err)
     })
@@ -188,7 +195,7 @@ export default function App() {
       return res.json()
     }).then(res=>{
       getRecipeListData()
-      setModalIsVisible(false)
+      setUpdateModalIsVisible(false)
       clearForm()
     })
   }
@@ -204,14 +211,14 @@ export default function App() {
   }
 
   const handleUpdate = (item) => {
-    setName(item._id.name)
-    setAuthor(item.author)
-    setPrepTime(item.prepTime)
-    setCookTime(item.cookTime)
-    setIngredients(item.ingredients)
-    setInstructions(item.instructions)
-    setImage(item.image)
-    setModalIsVisible(true)
+    setName(name)
+    setAuthor(author)
+    setPrepTime(prepTime)
+    setCookTime(cookTime)
+    setIngredients(ingredients)
+    setInstructions(instructions)
+    setImage(image)
+    setUpdateModalIsVisible(true)
   }
 
   const handleShow = (item) => {
@@ -239,10 +246,10 @@ export default function App() {
             visible={modalIsVisible}
           >
             <AddNewModal>
-
+            <Logo source={require('./assets/Logo2.png')} />
               <AddScrollView>
-                
-              <Text>Name</Text>
+              
+              <FormText>Name</FormText>
               <TextInputStl 
                 placeholder='Dish Name'
                 value={name}
@@ -251,7 +258,7 @@ export default function App() {
                 }}
               />
 
-              <Text>Author</Text>
+              <FormText>Author</FormText>
               <TextInputStl 
                 placeholder='Created By'
                 value={author}
@@ -260,7 +267,7 @@ export default function App() {
                 }}
               />
 
-              <Text>Prep Time</Text>
+              <FormText>Prep Time</FormText>
               <TextInputStl 
                 placeholder='Prep Time'
                 value={prepTime}
@@ -269,7 +276,7 @@ export default function App() {
                 }}
               />
 
-              <Text>Cook Time</Text>
+              <FormText>Cook Time</FormText>
               <TextInputStl 
                 placeholder='Cook Time'
                 value={cookTime}
@@ -278,7 +285,7 @@ export default function App() {
                 }}
               />
 
-              <Text>Ingredients</Text>
+              <FormText>Ingredients</FormText>
               <TextInputStl 
                 multiline
                 placeholder='Please List Ingredients'
@@ -288,7 +295,7 @@ export default function App() {
                 }}
               />
 
-              <Text>Instructions</Text>
+              <FormText>Instructions</FormText>
               <TextInputStl 
                 multiline
                 placeholder='Please List Instructions'
@@ -298,7 +305,7 @@ export default function App() {
                 }}
               />
 
-              <Text>Image</Text>
+              <FormText>Image</FormText>
               <TextInputStl 
                 placeholder='Image Address'
                 value={image}
@@ -309,17 +316,15 @@ export default function App() {
 
             </AddScrollView>
 
-              <TouchableOpacity onPress={endModal}>
+            <AddNewBtns>
+              <AddNewClose onPress={endModal}>
                 <Text>Close</Text>
-              </TouchableOpacity>
+              </AddNewClose>
               
-              <TouchableOpacity onPress={addNewRecipe} >
+              <AddNewAdd onPress={addNewRecipe} >
                 <Text>Add Recipe!</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity onPress={updateRecipe}>
-                <Text>Update!</Text>
-              </TouchableOpacity>
+              </AddNewAdd>
+            </AddNewBtns>
 
             
             </AddNewModal>
@@ -331,16 +336,17 @@ export default function App() {
         
 
 
-        <TouchableWithoutFeedback onPress={() => {
-          Keyboard.dismiss()
-          console.log('dismissed keyboard')
-          }} > 
         <Modal
-          visible={updateModalIsVisible}
-        >
+            visible={updateModalIsVisible}
+          >
           <UpdateModal>
               
-            <Text>Name</Text>
+        {/* <TouchableWithoutFeedback onPress={() => {
+          Keyboard.dismiss()
+          console.log('dismissed keyboard')
+          }} >  */}
+          <ScrollView>
+            <FormText>Name</FormText>
             <TextInputStl
               placeholder='Dish Name'
               value={name}
@@ -349,7 +355,7 @@ export default function App() {
               }}
             />
 
-            <Text>Author</Text>
+            <FormText>Author</FormText>
             <TextInputStl 
               placeholder='Created By'
               value={author}
@@ -358,7 +364,7 @@ export default function App() {
               }}
             />
 
-            <Text>Prep Time</Text>
+            <FormText>Prep Time</FormText>
             <TextInputStl
               placeholder='Prep Time'
               value={prepTime}
@@ -367,7 +373,7 @@ export default function App() {
               }}
             />
 
-            <Text>Cook Time</Text>
+            <FormText>Cook Time</FormText>
             <TextInputStl
               placeholder='Cook Time'
               value={cookTime}
@@ -376,7 +382,7 @@ export default function App() {
               }}
             />
 
-            <Text>Ingredients</Text>
+            <FormText>Ingredients</FormText>
             <TextInputStl
               multiline
               placeholder='Please List Ingredients'
@@ -386,7 +392,7 @@ export default function App() {
               }}
             />
 
-            <Text>Instructions</Text>
+            <FormText>Instructions</FormText>
             <TextInputStl
               multiline
               placeholder='Please List Instructions'
@@ -396,7 +402,7 @@ export default function App() {
               }}
             />
 
-            <Text>Image</Text>
+            <FormText>Image</FormText>
             <TextInputStl
               placeholder='Image Address'
               value={image}
@@ -404,22 +410,24 @@ export default function App() {
                 setImage(text)
               }}
             />
-            <TouchableOpacity onPress={endModal}>
+            </ScrollView>
+        {/* </TouchableWithoutFeedback> */}
+
+            <TouchableOpacity onPress={endUpdateModal}>
               <Text>Close</Text>
             </TouchableOpacity>
-            
 
             <TouchableOpacity onPress={updateRecipe}>
-              <Text>Update!</Text>
-            </TouchableOpacity>
+                <Text>Update!</Text>
+              </TouchableOpacity>
+
 
           
           </UpdateModal>
 
 
-        </Modal>
 
-        </TouchableWithoutFeedback>
+        </Modal>
 
 
         <Modal
@@ -453,7 +461,7 @@ export default function App() {
                         <TxtDelete >Delete</TxtDelete>
                     </TouchableOpacity>
 
-                    <TouchableOpacity onPress={() => handleUpdate(itemData.item)} >
+                    <TouchableOpacity onPress={startUpdateModal} >
                         <TxtUpdate >Update</TxtUpdate>
                     </TouchableOpacity>
 

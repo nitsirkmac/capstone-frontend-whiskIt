@@ -114,7 +114,6 @@ export const AddNewModal = styled.SafeAreaView`
     flex: 1;
     align-items: flex-start;
     justify-content: center;
-    background-color: ${colors.beige};
     padding-top: 60px;
     padding: 15px;
     margin: 10px;
@@ -122,6 +121,9 @@ export const AddNewModal = styled.SafeAreaView`
 
 export const AddScrollView = styled.ScrollView`
     background-color: ${colors.beige};
+    padding: 5px;
+    padding-top: 10px;
+    border-radius: 5px;
 `;
 
 export const TextInputStl = styled.TextInput`
@@ -131,7 +133,7 @@ export const TextInputStl = styled.TextInput`
     margin: 5px;
 `;
 
-export const UpdateModal = styled.View`
+export const UpdateModal = styled.SafeAreaView`
     flex: 1;
     align-items: flex-start;
     justify-content: center;
@@ -180,4 +182,37 @@ export const RecipeCardTitle = styled.Text`
     font-size: 14px;
     color: ${colors.orange};
     padding: 3px;
+`;
+
+export const AddNewBtns = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
+`;
+
+export const AddNewClose = styled.TouchableOpacity`
+    border-width: 1px;
+    margin: 4px;
+    margin-left: 30px;
+    padding: 5px;
+    padding-left: 30px;
+    background-color: ${colors.orange};
+    border-color: ${colors.taupe};
+    width: 100px;
+`;
+
+export const AddNewAdd = styled.TouchableOpacity`
+    border-width: 1px;
+    margin: 4px;
+    margin-left: 105px;
+    padding: 5px;
+    padding-left: 10px;
+    background-color: ${colors.red};
+    border-color: ${colors.orange};
+    width: 100px;
+`;
+
+export const FormText = styled.Text`
+    font-weight: bold;
+    font-style: italic;
+    color: ${colors.brown};
 `;
