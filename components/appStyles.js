@@ -28,7 +28,7 @@ export const NavBar = styled.View`
     flex-direction: row;
     align-items: space-between; 
     justify-content: center;
-    margin: 30px;
+    margin-top: 5px;
 `;
 
 export const NavAddBtn = styled.TouchableOpacity`
@@ -50,26 +50,35 @@ export const WhiskItText = styled.Text`
 
 export const RecipeCard = styled.View`
     flex-direction: row;
+    align-items: center;
     margin: 10px;
     border-width: 2px;
     border-color: ${colors.taupe};
     border-radius: 5px;
-    height: 200px;
+    height: 150px;
     background-color: ${colors.beige};
     width: 350px;
 `;
 
 export const CardText = styled.View`
+    flex: 3;
     align-items: flex-start;
     justify-content: space-between;
-    color: ${colors.brown};
     padding-left: 4px;
 `;
 
+export const CardTextStyle = styled.Text`
+    color: ${colors.brown};
+    font-size: 12px;
+    margin: 3px;
+`;
+
 export const CardImage = styled.View`
+    flex: 1;
     width: 80px;
-    justify-content: flex-end;
+    justify-content: center;
     margin: 4px;
+    height: 100px;
 `;
 
 export const TxtDelete = styled.Text`
@@ -87,7 +96,7 @@ export const TxtUpdate = styled.Text`
 `;
 
 export const ShowModal = styled.View`
-    display: flex;
+    flex: 1;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
@@ -112,7 +121,7 @@ export const ShowBtns = styled.View`
 
 export const AddNewModal = styled.SafeAreaView`
     flex: 1;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
     padding-top: 60px;
     padding: 15px;
@@ -121,8 +130,8 @@ export const AddNewModal = styled.SafeAreaView`
 
 export const AddScrollView = styled.ScrollView`
     background-color: ${colors.beige};
-    padding: 5px;
-    padding-top: 10px;
+    padding: 25px;
+    padding-top: 20px;
     border-radius: 5px;
 `;
 
@@ -131,15 +140,23 @@ export const TextInputStl = styled.TextInput`
     border-color: ${colors.taupe};
     width: 300px;
     margin: 5px;
+    margin-bottom: 10px;
 `;
 
 export const UpdateModal = styled.SafeAreaView`
     flex: 1;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
-    background-color: ${colors.taupe};
     padding-top: 60px;
     padding: 15px;
+    margin: 10px;
+`;
+
+export const UpdateScrollView = styled.ScrollView`
+    background-color: ${colors.beige};
+    padding: 25px;
+    padding-top: 20px;
+    border-radius: 5px;
 `;
 
 export const ShowTitle = styled.Text`
@@ -164,7 +181,7 @@ export const ShowItemName = styled.Text`
 
 export const ShowImage = styled.Image`
     margin-top: 15px;
-    height: 100px;
+    height: 200px;
     
 `;
 
@@ -215,4 +232,9 @@ export const FormText = styled.Text`
     font-weight: bold;
     font-style: italic;
     color: ${colors.brown};
+`;
+
+export const Container = styled.SafeAreaView`
+    flex: 1;
+
 `;

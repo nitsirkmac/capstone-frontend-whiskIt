@@ -41,6 +41,9 @@ import { ShowAuthor,
   AddNewAdd,
   Logo,
   AddNewModal, 
+  CardTextStyle,
+  UpdateScrollView,
+  Container,
   FormText} from './components/appStyles'
 
 
@@ -142,7 +145,7 @@ export default function App() {
       return res.json()
     }).then(res=>{
       getRecipeListData()
-      
+      endShowModal()
     }).catch(err=>{
       console.log(err)
     })
@@ -235,7 +238,7 @@ export default function App() {
   return (
 
 
-    <SafeAreaView >
+    <Container >
       <View>
 
         <TouchableWithoutFeedback onPress={() => {
@@ -335,17 +338,17 @@ export default function App() {
 
         
 
+        {/* <TouchableWithoutFeedback onPress={() => {
+          Keyboard.dismiss()
+          console.log('dismissed keyboard')
+          }} >  */}
 
         <Modal
             visible={updateModalIsVisible}
           >
           <UpdateModal>
-              
-        {/* <TouchableWithoutFeedback onPress={() => {
-          Keyboard.dismiss()
-          console.log('dismissed keyboard')
-          }} >  */}
-          <ScrollView>
+          <Logo source={require('./assets/Logo2.png')} />          
+          <UpdateScrollView>
             <FormText>Name</FormText>
             <TextInputStl
               placeholder='Dish Name'
@@ -410,17 +413,17 @@ export default function App() {
                 setImage(text)
               }}
             />
-            </ScrollView>
-        {/* </TouchableWithoutFeedback> */}
+            </UpdateScrollView>
 
-            <TouchableOpacity onPress={endUpdateModal}>
-              <Text>Close</Text>
-            </TouchableOpacity>
+            <AddNewBtns>
+              <AddNewClose onPress={endUpdateModal}>
+                <FormText>Close</FormText>
+              </AddNewClose>
 
-            <TouchableOpacity onPress={updateRecipe}>
-                <Text>Update!</Text>
-              </TouchableOpacity>
-
+              <AddNewAdd onPress={updateRecipe}>
+                <FormText>Update!</FormText>
+              </AddNewAdd>
+            </AddNewBtns>
 
           
           </UpdateModal>
@@ -429,12 +432,14 @@ export default function App() {
 
         </Modal>
 
+        {/* </TouchableWithoutFeedback> */}
 
         <Modal
             visible={showModalIsVisible}
             >
 
             <ShowSafeView>
+                <Logo source={require('./assets/Logo2.png')} />
                 <ShowModal>
                   <ShowScrollView>
                     <ShowTitle> {name} </ShowTitle>
@@ -443,7 +448,7 @@ export default function App() {
                     <Text> {prepTime}  |  {cookTime} </Text>
                     <ShowImage source={{ uri: image}} 
                             style={{
-                            resizeMode: 'contain',
+                            resizeMode: 'cover',
                             }} 
                             />
                     <ShowItemName> Ingredients: </ShowItemName>
@@ -495,13 +500,13 @@ export default function App() {
           renderItem={(itemData) => {
             return (
               <View>
-                <RecipeCard >
                   <TouchableOpacity onPress={() => handleShow(itemData.item)}>
+                <RecipeCard >
                     <CardText> 
                       <RecipeCardTitle> {itemData.item.name} </RecipeCardTitle>
-                      <Text> {itemData.item.author} </Text>
-                      <Text> Prep: {itemData.item.prepTime} </Text>
-                      <Text> Cook Time: {itemData.item.cookTime} </Text>
+                      <CardTextStyle> {itemData.item.author} </CardTextStyle>
+                      <CardTextStyle> Prep Time: {itemData.item.prepTime} </CardTextStyle>
+                      <CardTextStyle> Cook Time: {itemData.item.cookTime} </CardTextStyle>
                       
                     </CardText>
 
@@ -509,13 +514,13 @@ export default function App() {
                       <Image source={{ uri: itemData.item.image}} 
                       style={{
                         resizeMode: 'contain',
-                        margin: 2,
-                        height: 50,
+                        margin: 5,
+                        height: 100,
                       }} 
                       />
                     </CardImage>
-                  </TouchableOpacity>  
                 </RecipeCard>
+                  </TouchableOpacity>  
 
 
               </View>
@@ -529,7 +534,7 @@ export default function App() {
         )}
       </View>
 
-    </SafeAreaView>
+    </Container>
 
 
   );
