@@ -1,6 +1,8 @@
 
 import { StatusBar } from 'expo-status-bar';
 import { ActivityIndicator,
+   TouchableWithoutFeedback,
+   Keyboard,
    StyleSheet, 
    Text, 
    View,  
@@ -16,7 +18,24 @@ import { useEffect, useState } from 'react'
 import Nav from './components/nav'
 import RecipeList from './components/recipeList'
 
-import {  TxtDelete, TxtUpdate, ShowModal, ShowBtns } from './components/appStyles'
+import { ShowAuthor,
+  AddScrollView,
+  ShowSafeView,
+  ShowImage,
+  ShowItemName, 
+  ShowScrollView,
+  ShowTitle, 
+  UpdateModal, 
+  TextInputStl, 
+  RecipeCard, 
+  CardText, 
+  CardImage, 
+  TxtDelete, 
+  TxtUpdate,
+  TxtHome, 
+  ShowModal, 
+  ShowBtns, 
+  AddNewModal } from './components/appStyles'
 import Recipe from './components/recipe';
 
 
@@ -184,7 +203,7 @@ export default function App() {
   }
 
   const handleUpdate = (item) => {
-    setName(item.name)
+    setName(item._id.name)
     setAuthor(item.author)
     setPrepTime(item.prepTime)
     setCookTime(item.cookTime)
@@ -216,99 +235,102 @@ export default function App() {
     <SafeAreaView >
       <View>
 
-        <Modal
-          visible={modalIsVisible}
-        >
-          <View style={styles.addNewModal}>
+        <TouchableWithoutFeedback onPress={() => {
+         Keyboard.dismiss()
+         console.log('dismissed keyboard')
+        }} > 
+          <Modal
+            visible={modalIsVisible}
+          >
+            <AddNewModal>
+
+              <AddScrollView>
+                
+              <Text>Name</Text>
+              <TextInputStl 
+                placeholder='Dish Name'
+                value={name}
+                onChangeText={(text)=>{
+                  setName(text)
+                }}
+              />
+
+              <Text>Author</Text>
+              <TextInputStl 
+                placeholder='Created By'
+                value={author}
+                onChangeText={(text)=>{
+                  setAuthor(text)
+                }}
+              />
+
+              <Text>Prep Time</Text>
+              <TextInputStl 
+                placeholder='Prep Time'
+                value={prepTime}
+                onChangeText={(text)=>{
+                  setPrepTime(text)
+                }}
+              />
+
+              <Text>Cook Time</Text>
+              <TextInputStl 
+                placeholder='Cook Time'
+                value={cookTime}
+                onChangeText={(text)=>{
+                  setCookTime(text)
+                }}
+              />
+
+              <Text>Ingredients</Text>
+              <TextInputStl 
+                multiline
+                placeholder='Please List Ingredients'
+                value={ingredients}
+                onChangeText={(text)=>{
+                  setIngredients(text)
+                }}
+              />
+
+              <Text>Instructions</Text>
+              <TextInputStl 
+                multiline
+                placeholder='Please List Instructions'
+                value={instructions}
+                onChangeText={(text)=>{
+                  setInstructions(text)
+                }}
+              />
+
+              <Text>Image</Text>
+              <TextInputStl 
+                placeholder='Image Address'
+                value={image}
+                onChangeText={(text)=>{
+                  setImage(text)
+                }}
+              />
+
+            </AddScrollView>
+
+              <TouchableOpacity onPress={endModal}>
+                <Text>Close</Text>
+              </TouchableOpacity>
               
-            <Text>Name</Text>
-            <TextInput 
-              style={styles.textInput}
-              placeholder='Dish Name'
-              value={name}
-              onChangeText={(text)=>{
-                setName(text)
-              }}
-            />
+              <TouchableOpacity onPress={addNewRecipe} >
+                <Text>Add Recipe!</Text>
+              </TouchableOpacity>
 
-            <Text>Author</Text>
-            <TextInput 
-              style={styles.textInput}
-              placeholder='Created By'
-              value={author}
-              onChangeText={(text)=>{
-                setAuthor(text)
-              }}
-            />
+              <TouchableOpacity onPress={updateRecipe}>
+                <Text>Update!</Text>
+              </TouchableOpacity>
 
-            <Text>Prep Time</Text>
-            <TextInput 
-              style={styles.textInput}
-              placeholder='Prep Time'
-              value={prepTime}
-              onChangeText={(text)=>{
-                setPrepTime(text)
-              }}
-            />
-
-            <Text>Cook Time</Text>
-            <TextInput 
-              style={styles.textInput}
-              placeholder='Cook Time'
-              value={cookTime}
-              onChangeText={(text)=>{
-                setCookTime(text)
-              }}
-            />
-
-            <Text>Ingredients</Text>
-            <TextInput 
-              style={styles.textInput}
-              multiline
-              placeholder='Please List Ingredients'
-              value={ingredients}
-              onChangeText={(text)=>{
-                setIngredients(text)
-              }}
-            />
-
-            <Text>Instructions</Text>
-            <TextInput 
-              style={styles.textInput}
-              multiline
-              placeholder='Please List Instructions'
-              value={instructions}
-              onChangeText={(text)=>{
-                setInstructions(text)
-              }}
-            />
-
-            <Text>Image</Text>
-            <TextInput 
-              style={styles.textInput}
-              placeholder='Image Address'
-              value={image}
-              onChangeText={(text)=>{
-                setImage(text)
-              }}
-            />
-            <TouchableOpacity onPress={endModal}>
-              <Text>Close</Text>
-            </TouchableOpacity>
             
-            <TouchableOpacity onPress={addNewRecipe} >
-              <Text>Add Recipe!</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={updateRecipe}>
-              <Text>Update!</Text>
-            </TouchableOpacity>
-
-          
-          </View>
+            </AddNewModal>
 
 
-        </Modal>
+          </Modal>
+        </TouchableWithoutFeedback>
 
         
 
@@ -316,11 +338,10 @@ export default function App() {
         <Modal
           visible={updateModalIsVisible}
         >
-          <View style={styles.updateModal}>
+          <UpdateModal>
               
             <Text>Name</Text>
-            <TextInput 
-              style={styles.textInput}
+            <TextInputStl
               placeholder='Dish Name'
               value={name}
               onChangeText={(text)=>{
@@ -329,8 +350,7 @@ export default function App() {
             />
 
             <Text>Author</Text>
-            <TextInput 
-              style={styles.textInput}
+            <TextInputStl 
               placeholder='Created By'
               value={author}
               onChangeText={(text)=>{
@@ -339,8 +359,7 @@ export default function App() {
             />
 
             <Text>Prep Time</Text>
-            <TextInput 
-              style={styles.textInput}
+            <TextInputStl
               placeholder='Prep Time'
               value={prepTime}
               onChangeText={(text)=>{
@@ -349,8 +368,7 @@ export default function App() {
             />
 
             <Text>Cook Time</Text>
-            <TextInput 
-              style={styles.textInput}
+            <TextInputStl
               placeholder='Cook Time'
               value={cookTime}
               onChangeText={(text)=>{
@@ -359,8 +377,7 @@ export default function App() {
             />
 
             <Text>Ingredients</Text>
-            <TextInput 
-              style={styles.textInput}
+            <TextInputStl
               multiline
               placeholder='Please List Ingredients'
               value={ingredients}
@@ -370,8 +387,7 @@ export default function App() {
             />
 
             <Text>Instructions</Text>
-            <TextInput 
-              style={styles.textInput}
+            <TextInputStl
               multiline
               placeholder='Please List Instructions'
               value={instructions}
@@ -381,8 +397,7 @@ export default function App() {
             />
 
             <Text>Image</Text>
-            <TextInput 
-              style={styles.textInput}
+            <TextInputStl
               placeholder='Image Address'
               value={image}
               onChangeText={(text)=>{
@@ -399,7 +414,7 @@ export default function App() {
             </TouchableOpacity>
 
           
-          </View>
+          </UpdateModal>
 
 
         </Modal>
@@ -411,24 +426,26 @@ export default function App() {
             visible={showModalIsVisible}
             >
 
-            <SafeAreaView>
+            <ShowSafeView>
                 <ShowModal>
-                    <Text> {name} </Text>
-                    <Text> {author} </Text>
-                    <Text> Prep Time: {prepTime} </Text>
-                    <Text> Cook Time: {cookTime} </Text>
-                    <Text> Ingredients: </Text>
-                    <Text> {ingredients} </Text>
-                    <Text> Step by Step: </Text>
-                    <Text> {instructions} </Text>
-                    <Image source={{ uri: image}} 
+                  <ShowScrollView>
+                    <ShowTitle> {name} </ShowTitle>
+                    <ShowAuthor> Created By {author} </ShowAuthor>
+                    <ShowItemName> Prep Time  |   Cook Time </ShowItemName>
+                    <Text> {prepTime}  |  {cookTime} </Text>
+                    <ShowImage source={{ uri: image}} 
                             style={{
                             resizeMode: 'contain',
-                            margin: 2,
-                            height: 50,
+                            // margin: 2,
+                            // height: 50,
                             }} 
                             />
+                    <ShowItemName> Ingredients: </ShowItemName>
+                    <Text> {ingredients} </Text>
+                    <ShowItemName> Step by Step: </ShowItemName>
+                    <Text> {instructions} </Text>
 
+                  </ShowScrollView>
                 </ShowModal>
                 
                 <ShowBtns>
@@ -437,18 +454,18 @@ export default function App() {
                     <TxtDelete >Delete</TxtDelete>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => handleUpdate(itemData.item)}>
+                <TouchableOpacity onPress={() => handleUpdate(item)} >
                     <TxtUpdate >Update</TxtUpdate>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={endShowModal}>
-                <Text>Back To Directory!</Text>
+                <TxtHome>Back To Directory!</TxtHome>
                 </TouchableOpacity>
 
                 </ShowBtns>
 
 
-            </SafeAreaView>
+            </ShowSafeView>
         </Modal>
 
 
@@ -464,10 +481,42 @@ export default function App() {
         {isLoading ? (
           <ActivityIndicator />
         ) : (
-          <RecipeList 
-            recipeList={recipeList}
-            handleShow={handleShow}
-          />         
+          <FlatList 
+          data={recipeList}
+          renderItem={(itemData) => {
+            return (
+              <View>
+                <RecipeCard >
+                  <TouchableOpacity onPress={() => handleShow(itemData.item)}>
+                    <CardText> 
+                      <Text> {itemData.item.name} </Text>
+                      <Text> {itemData.item.author} </Text>
+                      <Text> Prep: {itemData.item.prepTime} </Text>
+                      <Text> Cook Time: {itemData.item.cookTime} </Text>
+                      
+                    </CardText>
+
+                    <CardImage>
+                      <Image source={{ uri: itemData.item.image}} 
+                      style={{
+                        resizeMode: 'contain',
+                        margin: 2,
+                        height: 50,
+                      }} 
+                      />
+                    </CardImage>
+                  </TouchableOpacity>  
+                </RecipeCard>
+
+
+              </View>
+              
+            )
+          }}
+          keyExtractor={(item, index) => {
+            return ( _id = item._id)
+          }}
+        />       
         )}
       </View>
 
@@ -483,29 +532,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  addNewModal: {
-    flex: 1,
-    alignItems: 'flex-start',
-    justifyContent: 'center',
-    backgroundColor: '#e8ceb0',
-    paddingTop: 60,
-    padding: 15,
-  },
-  textInput: {
-    borderWidth: 2,
-    borderColor: '#f28357',
-    width: 300,
-    margin: 5,
-  },
-
-  updatewModal: {
-    flex: 1,
-    alignItems: 'flex-start',
-    justifyContent: 'center',
-    backgroundColor: '#e8ceb0',
-    paddingTop: 60,
-    padding: 15,
-  },
+  }
   
 });

@@ -75,23 +75,102 @@ export const CardImage = styled.View`
 export const TxtDelete = styled.Text`
     background-color: ${colors.red};
     color: ${colors.brown};
-    width: 45px;
+    width: 85px;
+    padding-left: 20px;
 `;
 
 export const TxtUpdate = styled.Text`
     background-color: ${colors.taupe};
     color: ${colors.brown};
-    width: 55px;
+    width: 85px;
+    padding-left: 20px;
 `;
 
-export const ShowModal = styled.ScrollView`
+export const ShowModal = styled.View`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     background-color: ${colors.beige};
-
+    margin: 5px;
+    padding: 5px;
+    border-width: 2px;
+    border-color: ${colors.taupe};
+    border-radius: 5px;
 `;
+
+export const ShowScrollView = styled.ScrollView`
+    background-color: ${colors.beige};
+`;
+
 
 export const ShowBtns = styled.View`
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
+    height: 60px;
 `;
 
+export const AddNewModal = styled.SafeAreaView`
+    flex: 1;
+    align-items: flex-start;
+    justify-content: center;
+    background-color: ${colors.beige};
+    padding-top: 60px;
+    padding: 15px;
+    margin: 10px;
+`;
 
+export const AddScrollView = styled.ScrollView`
+    background-color: ${colors.beige};
+`;
+
+export const TextInputStl = styled.TextInput`
+    border-width: 2px;
+    border-color: ${colors.taupe};
+    width: 300px;
+    margin: 5px;
+`;
+
+export const UpdateModal = styled.View`
+    flex: 1;
+    align-items: flex-start;
+    justify-content: center;
+    background-color: ${colors.taupe};
+    padding-top: 60px;
+    padding: 15px;
+`;
+
+export const ShowTitle = styled.Text`
+    font-weight: bold;
+    font-size: 16px;
+    color: ${colors.orange};
+`;
+
+export const ShowAuthor = styled.Text`
+    font-weight: bold;
+    font-size: 12px;
+`;
+
+export const ShowItemName = styled.Text`
+    font-weight: bold;
+    font-size: 14px;
+    color: ${colors.red};
+    border-bottom-width: 2px;
+    border-bottom-color: ${colors.red};
+    margin-top: 15px;
+`;
+
+export const ShowImage = styled.Image`
+    margin-top: 15px;
+    height: 100px;
+    
+`;
+
+export const ShowSafeView = styled.SafeAreaView`
+    flex: 1;
+`;
+
+export const TxtHome = styled.Text`
+    color: ${colors.taupe};
+    font-weight: bold;
+`;
