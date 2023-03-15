@@ -37,6 +37,8 @@ Node.js\
 Express\
 ReactNative\
 
+## Trello
+https://trello.com/b/zxpbYcSg/the-grimoire
 
 
 ## Future Enhancements
